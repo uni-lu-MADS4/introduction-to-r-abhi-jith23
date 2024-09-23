@@ -1,7 +1,7 @@
 ---
 title: "Getting started with R"
-author: Your name here
-date: today
+author: Abhijith Senthilkumar
+date: 23.09.2024
 format: html
 ---
 
@@ -10,49 +10,52 @@ format: html
 * Create a vector of the letters A, B and C.
 
 ```{r}
-# Your answer in code
+c("A","B","C")
 
 ```
 > Your answer as text
-
+[1] "A" "B" "C"
 
 
 * Assign the vector to a variable `my_letters`
 ```{r}
-# Your answer in code
+my_letters <- c("A","B","C")
 
 ```
 
 
 * Check the what happens when you run `letters` (just this) on the command line.
 ```{r}
-# Your answer in code
+print(letters)
 
 ```
 
 > Your answer as text
+All the letters of the alphabet are printed in a vector format.
 
 
 
 * What happens when you concatenate two vectors? Add `c(my_letters , my_letters)`
 ```{r}
-# Your answer in code
-
+c(my_letters, my_letters)
 
 ```
 
 > Your answer as text
-
+It is exactly as concatenate works, there is no change to the order or it is not sorted, the second vector is added to the first vector and printed together. 
 
 
 * Add the number 1 to letters. What happens to the type of the vector?
 ```{r}
 # Your answer in code
-
+typeof(my_letters)
+c(my_letters,1)
+typeof(my_letters)
 
 ```
 
 > Your answer as text
+When concatenated, the number is appended to the end of the vector, and is converted to char dtype. 
 
 
 
@@ -64,9 +67,7 @@ format: html
 3. Add the vector containing 1, 2, 3, 4 to `my_vec`. What do you observe?
 
 ```{r}
-# Your answer in code
-
-
+myvec <- c(1:8)
 
 
 
@@ -95,24 +96,45 @@ format: html
 
 ```{r}
 # Your answer in code
+x=c(4,9,10)
+y=c(1,5,7)
 
+A <- matrix(c(x,y), ncol=2)
+print(A)
 
+print(A[2,2])
 
+A <- cbind(A, c(0,0,0))
+print(A)
 
+A[1,1] <- 0
+print(A)
 
-
+print(t(A))
 ```
 
 
 8. Are any values in `A` larger than 10? 
 ```{r}
-# Your answer in code
+for (i in A) {
+  if (i > 10)
+    print("Yes")
+}
 
 ```
 
 9. Are all values in `A` smaller than 10?
 ```{r}
-# Your answer in code
+j=0
+for (i in A) {
+  if (i>10)
+    j <- j+1
+}
+
+if (j>=1){
+  print("No")
+}else
+  print("yes")
 
 ```
 
@@ -121,12 +143,12 @@ format: html
 1. Create a function that sums up two values even if provided as characters values
 
 ```{r}
-# Your answer in code
+sumFunction <- function(x) {
+  return(sum(x))
+}
 
-
-
-
-
+x <- c("sam", 10, 20, "Matt")
+print(sumFunction(x))
 ```
 
 
@@ -136,8 +158,17 @@ format: html
 
 ```{r}
 # Your answer in code
+allRounder <- function(x){
+  m1 <- mean(x)
+  m2 <- median(x)
+  sd <- sd(x)
 
+  return (c(m1,m2,sd))
+  
+}
 
+x <- c(34,56,87,65,34,56,89)
+print(allRounder(x))
 
 ```
 
@@ -147,7 +178,6 @@ format: html
 The output of `c('1' , "a", NA, "2", NA)` should be 2.
 
 ```{r}
-# Your answer in code
 
 
 
