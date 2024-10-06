@@ -20,7 +20,7 @@ c("A","B","C")
 * Assign the vector to a variable `my_letters`
 ```{r}
 my_letters <- c("A","B","C")
-
+print(my_letters)
 ```
 
 
@@ -37,8 +37,8 @@ All the letters of the alphabet are printed in a vector format.
 
 * What happens when you concatenate two vectors? Add `c(my_letters , my_letters)`
 ```{r}
-c(my_letters, my_letters)
-
+concatLetters <- c(my_letters, my_letters)
+print(concatLetters)
 ```
 
 > Your answer as text
@@ -67,13 +67,15 @@ When concatenated, the number is appended to the end of the vector, and is conve
 3. Add the vector containing 1, 2, 3, 4 to `my_vec`. What do you observe?
 
 ```{r}
-myvec <- c(1:8)
-# Hello World
-
-
+my_vec <- c(1:8)
+print(my_vec)
+my_vec <- my_vec + 2
+print(my_vec)
+my_vec <- my_vec + c(1,2,3,4)
+print(my_vec)
 ```
-
-
+> Your answer as text
+First, the vector is created, then each element of the vector is added +2. 3rd, since my_vec has 8 elements, the vector added to it will repeat itself to look like (1,2,3,4,1,2,3,4), and add itself to the existing elements in the respective indexes. 
 
 ### Exercise 3
 
@@ -87,6 +89,7 @@ myvec <- c(1:8)
 ```
 
 1. What was one of the correct commands used to write this matrix?
+The correct command is using the matrix() function
 2. Assign the matrix as `A`
 3. Check the dimensions
 4. Extract the element `5`
@@ -96,36 +99,57 @@ myvec <- c(1:8)
 
 ```{r}
 # Your answer in code
+#Assigning the Matrix as A
 x=c(4,9,10)
 y=c(1,5,7)
 
 A <- matrix(c(x,y), ncol=2)
 print(A)
 
+#or
+
+A <- matrix(c(4,9,10,1,5,7), nrow=3, ncol=2)
+print(A)
+
+#Checking the dimensions
+print(dim(A))
+
+#Extract the element '5'
 print(A[2,2])
 
+#Add vector as new column and update A
 A <- cbind(A, c(0,0,0))
 print(A)
 
+#Modify element 4 to '0'
 A[1,1] <- 0
 print(A)
 
-print(t(A))
+#Compute transpose of A
+ATranspose <- t(A)
+print(ATranspose)
 ```
 
 
 8. Are any values in `A` larger than 10? 
 ```{r}
+count <- 0
 for (i in A) {
-  if (i > 10)
-    print("Yes")
+  if (i > 10){
+    count <- count+1}
+}
+if (count >= 1){
+  print("yes")
+}else {
+  print("no")
 }
 
+any(A>10)
 ```
 
 9. Are all values in `A` smaller than 10?
 ```{r}
-j=0
+j<-0
 for (i in A) {
   if (i>10)
     j <- j+1
@@ -136,6 +160,7 @@ if (j>=1){
 }else
   print("yes")
 
+all(A<=10)
 ```
 
 ### Exercise 4
@@ -144,10 +169,11 @@ if (j>=1){
 
 ```{r}
 sumFunction <- function(x) {
-  return(sum(x))
+  num_x <- as.numeric(x)
+  return(sum(num_x))
 }
 
-x <- c("sam", 10, 20, "Matt")
+x <- c("5", "10")
 print(sumFunction(x))
 ```
 
@@ -162,14 +188,11 @@ allRounder <- function(x){
   m1 <- mean(x)
   m2 <- median(x)
   sd <- sd(x)
-
-  return (c(m1,m2,sd))
-  
+  return (list(mean=m1,median=m2,sd=sd))
 }
 
 x <- c(34,56,87,65,34,56,89)
 print(allRounder(x))
-
 ```
 
 
@@ -178,8 +201,15 @@ print(allRounder(x))
 The output of `c('1' , "a", NA, "2", NA)` should be 2.
 
 ```{r}
+library(magrittr)
 
+myVec <- c('1' , "a", NA, "2", NA)
 
+num_NA <- vec %>%
+  is.na() %>%
+  sum()
+
+print(num_NA)
 
 ```
 
